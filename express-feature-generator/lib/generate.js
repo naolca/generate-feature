@@ -3,15 +3,34 @@ const fs = require('fs-extra');
 const path = require('path');
 
 const generateFile = (type, name) => {
-  const templatePath = path.join(__dirname, '../templates', `${type}.ejs`);
-  const outputPath = path.join(process.cwd(), `${name}.${type}.js`);
+  const directories = {
+    controller: 'Controllers',
+    route: 'Routes',
+    service: 'Services',
+    repository: 'Repositories',
+    model: 'Models',
+  };
+  
+  Object.keys(directories).forEach((type) => {
+    const templatePath = path.join(__dirname, '../templates', `${type}.ejs`);
+    const directoryPath = path.join(process.cwd(), directories[type]);
 
-  ejs.renderFile(templatePath, { name }, (err, result) => {
-    if (err) throw err;
+    // Ensure the directory exists
+    fs.ensureDirSync(directoryPath);
 
-    fs.outputFileSync(outputPath, result);
-    console.log(`${type} generated at ${outputPath}`);
+    const outputPath = path.join(directoryPath, `${name}.${type}.js`);
+
+    ejs.renderFile(templatePath, { name }, (err, result) => {
+      if (err) {
+        console.error("Error rendering file:", err);
+        return;
+      }
+
+      fs.outputFileSync(outputPath, result);
+      console.log(`${type} generated at ${outputPath}`);
+    });
   });
+
 };
 
 module.exports = generateFile;
