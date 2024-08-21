@@ -2,7 +2,7 @@ const ejs = require('ejs');
 const fs = require('fs-extra');
 const path = require('path');
 
-const generateFile = (type, name) => {
+const generateFile = (name) => {
   const directories = {
     controller: 'Controllers',
     route: 'Routes',
@@ -10,7 +10,7 @@ const generateFile = (type, name) => {
     repository: 'Repositories',
     model: 'Models',
   };
-  
+
   Object.keys(directories).forEach((type) => {
     const templatePath = path.join(__dirname, '../templates', `${type}.ejs`);
     const directoryPath = path.join(process.cwd(), directories[type]);
