@@ -1,0 +1,15 @@
+{
+  "name":"express-feature-generator",
+  "version":"1.0.0",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "ejs": "^3.1.10",
+    "fs-extra": "^11.2.0",
+    "inquirer": "^10.1.8"
+  },
+  "bin": {
+    "crudgen": "./bin/cli.js"
+  }
+  
+}
