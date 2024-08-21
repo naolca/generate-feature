@@ -6,7 +6,7 @@ program
   .command('generate feature <name>')
   .description('Generate a new CRUD component')
   .action((name) => {
-    generateFile( name);
+    generateFile(name);
   });
 
 program.parse(process.argv);
