@@ -2,6 +2,52 @@ import  <%=name %>Model from '../Models/<%=name %>.Models.js';
 
 class <%= name %>Repository {
     // Database interaction methods for <%= name.toLowerCase() %>
+
+    async create(data) {
+        try {
+        return await <%= name %>Model.create(data);
+        } catch (error) {
+            throw error;
+        }
+
+    };
+    
+    async findAll() {
+        try {
+        return await <%= name %>Model.find();
+        } catch (error) {
+            throw error;
+        }
+
+    };
+
+    async findById(id) {
+        try {
+        return await <%= name %>Model.findById(id);
+        } catch (error) {
+            throw error;
+        }
+
+    };
+
+    async update(id, data) {
+        try {
+        return await <%= name %>Model.findByIdAndUpdate(id
+            , data
+            , { new: true });
+        } catch (error) {
+            throw error;
+        }
+
+    };
+
+    async delete(id) {
+        try {
+        return await <%= name %>Model.findByIdAndDelete(id);
+        } catch (error) {
+            throw error;
+        }
+    };
   }
   
   module.exports = <%= name %>Repository;
