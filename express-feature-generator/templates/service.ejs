@@ -1,5 +1,49 @@
+import <%= name %>Repository from '../Repositories/<%= name %>.repository.js';
+
 class <%= name %>Service {
     // Service methods for <%= name.toLowerCase() %>
+
+    static async create<%= name %>(data) {
+        try {
+            return await <%= name %>Repository.create(data);
+        } catch (error) {
+            throw error;
+        }
+    };
+
+    static async findAll<%= name %>s() {
+        try {
+            return await <%= name %>Repository.findAll();
+        } catch (error) {
+            throw error;
+        }
+    };
+
+    static async find<%= name %>ById(id) {
+        try {
+            return await <%= name %>Repository.findById(id);
+        } catch (error) {
+            throw error;
+        }
+    };
+
+
+    static async update<%= name %>(id, data) {
+        try {
+            return await <%= name %>Repository.update(id, data);
+        } catch (error) {
+            throw error;
+        }
+    };
+
+
+    static async delete<%= name %>(id) {
+        try {
+            return await <%= name %>Repository.delete(id);
+        } catch (error) {
+            throw error;
+        }
+    };
   }
   
   module.exports = <%= name %>Service;
