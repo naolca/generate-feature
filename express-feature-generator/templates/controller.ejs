@@ -1,24 +1,59 @@
+import { <%= name %>Service } from '../Services/<%= name %>.service.js';
 class <%= name %>Controller {
-    async create(req, res) {
-      // Logic for creating a new <%= name.toLowerCase() %>
+
+  static async create<%= name %>(req, res) {
+    try {
+      const data = req.body;
+      await <%= name %>Service.create<%= name %>(data);
+      return res.status(201).json({ message: 'Created <%= name %>' });
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
     }
-  
-    async findAll(req, res) {
-      // Logic for fetching all <%= name.toLowerCase() %>s
+    
+  }
+
+  static async findAll<%= name %>s(req, res) {
+    try {
+      const all<%= name %>s = await <%= name %>Service.findAll<%= name %>s();
+      return res.status(200).json(all<%= name %>s);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
     }
-  
-    async findOne(req, res) {
-      // Logic for fetching a single <%= name.toLowerCase() %> by ID
-    }
-  
-    async update(req, res) {
-      // Logic for updating an existing <%= name.toLowerCase() %>
-    }
-  
-    async delete(req, res) {
-      // Logic for deleting an existing <%= name.toLowerCase() %>
+}
+
+
+  static async findOne<%= name %>(req, res) {
+    try {
+      const { id } = req.params;
+      const <%= name %> = await <%= name %>Service.findOne<%= name %>(id);
+      return res.status(200).json(<%= name %>);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
     }
   }
+
+  static async update<%= name %>(req, res) {
+    try {
+      const { id } = req.params;
+      const data = req.body;
+      await <%= name %>Service.update<%= name %>(id, data);
+      return res.status(200).json({ message: 'Updated <%= name %>' });
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  }
+
+  static async delete<%= name %>(req, res) {
+    try {
+      const { id } = req.params;
+      await <%= name %>Service.delete<%= name %>(id);
+      return res.status(200).json({ message: 'Deleted <%= name %>' });
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  }
+}
+
   
-  module.exports = <%= name %>Controller;
+export default <%= name %>Controller;
   
