@@ -26,7 +26,7 @@ const generateFile = (name) => {
         return;
       }
 
-      fs.outputFileSync(outputPath, result);
+      fs.outputFileSync(outputPath, result, { flag: 'w' }); // Use 'w' flag to overwrite existing files
       console.log(`${type} generated at ${outputPath}`);
     });
   });
